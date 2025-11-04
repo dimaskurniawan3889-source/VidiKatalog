@@ -1,0 +1,55 @@
+/* Custom Gradients and Colors */
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #000000, #969494);
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(45deg, #503400, #925902);
+}
+
+.bg-gradient-tertiary {
+    background: linear-gradient(45deg, #000000, #969494);
+}
+
+/* Logo Styling */
+.logo {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Portfolio Cards */
+.portfolio-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.portfolio-card img {
+    border-radius: 15px 15px 0 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .nav {
+        flex-direction: column;
+    }
+}
