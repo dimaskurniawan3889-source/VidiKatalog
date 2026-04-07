@@ -3,106 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidi Catalog</title>
+    <title>Vidi Katalog - Busana Jawi Modern</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --jawa-gold: #d4af37;
+            --jawa-brown: #5d4037;
+            --jawa-dark: #2c1e1a;
+            --shopee-orange: #ee4d2d;
+            --wa-green: #25d366;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #fcfaf5;
+        }
+
+        h1, h2, h3, .modal-title { font-family: 'Playfair Display', serif; }
+
+        header {
+            background: linear-gradient(45deg, var(--jawa-brown), var(--jawa-dark));
+            z-index: 1030;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://www.toptal.com/designers/subtlepatterns/uploads/batik-pattern.png');
+            padding: 100px 0;
+            border-bottom: 5px solid var(--jawa-gold);
+        }
+
+        .portfolio-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            background: white;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-card img {
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            color: var(--jawa-brown);
+            font-weight: 700;
+        }
+
+        .btn-shopee { background-color: var(--shopee-orange); color: white; font-weight: 600; border: none; }
+        .btn-shopee:hover { background-color: #d73211; color: white; }
+        
+        .btn-whatsapp { background-color: var(--wa-green); color: white; font-weight: 600; border: none; }
+        .btn-whatsapp:hover { background-color: #1eb954; color: white; }
+        
+        .modal-content { border-radius: 20px; border: none; }
+        .modal-header { border-bottom: 2px solid var(--jawa-gold); background-color: #fcfaf5; }
+        
+        .carousel-item img {
+            border-radius: 15px;
+            width: 100%;
+            height: 450px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+        }
+        
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        #contact { background: linear-gradient(135deg, #3e2723 0%, #1b110f 100%); }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="bg-gradient-primary text-white py-3">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <h1 class="logo">Vidi Katalog</h1>
-                <nav>
-                    <ul class="nav">
-                        <li class="nav-item"><a class="nav-link text-white" href="#about">Babagan</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#portfolio">Pratelan</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#contact">Narahubung</a></li>
-                    </ul>
-                </nav>
-            </div>
+
+    <header class="text-white py-3 sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="m-0" style="letter-spacing: 2px; font-size: 1.5rem;">VIDI KATALOG</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white small" href="#portfolio">Pratelan</a></li>
+                    <li class="nav-item"><a class="nav-link text-white small" href="#contact">Narahubung</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero bg-gradient-secondary text-white text-center py-5">
+    <section class="hero text-white text-center">
         <div class="container">
-            <h2 class="display-4">Koleksi Busana Paling Enggal Saha Mutakhir Saking Jawa</h2>
-            <p class="lead">Panggihaken gegayatan panjenengan mawi rancangan ingkang tegas saha manéka warni.</p>
-            <a href="#portfolio" class="btn btn-warning btn-lg">Portofolio</a>
+            <h2 class="display-4 mb-3">Koleksi Busana Enggal</h2>
+            <p class="lead mb-4">Panggihaken rancangan ingkang tegas saha manéka warni.</p>
+            <a href="#portfolio" class="btn btn-warning btn-lg px-5 shadow fw-bold">Tingali Koleksi</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4 text">Babagan VidiKatalog</h2>
-            <p class="text-center">VidiKatalog inggih menika perusahaan busana inovatif kagem koleksi ingkang manéka warni. Kula ngutamikaken kualitas inggil saha rancangan supados Panjenengan ketingal bénten.</p>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
     <section id="portfolio" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4 text">Pratelan Produk</h2>
-            <div class="row">
+            <h2 class="text-center mb-5">Pratelan Produk</h2>
+            <div class="row justify-content-center">
+                
                 <div class="col-md-4 mb-4">
-                    <div class="card portfolio-card">
-                        <img src="https://blog.knitto.co.id/wp-content/uploads/2024/05/Baju-Adat-Jawa-Tengah-Kebaya-Wanita.jpg" class="card-img-top" alt="Kebaya">
-                        <div class="card-body">
-                            <h5 class="card-title">Kebaya</h5>
-                            <p class="card-text">Kebaya mawi corak mawarni-warni kangge adicara istimewa.</p>
+                    <div class="card portfolio-card h-100" 
+                        onclick="openModal(
+                            'Kebaya Janggan', 
+                            'Rp 209.000', 
+                            'Kebaya mawi corak mawarni-warni kangge adicara istimewa.', 
+                            [
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0i-mcmb671i8mjcc4.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0t-mcmb671s885304.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rasm-m2tlt87fvf3v28.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rasg-m2ory6fkutq7ff.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ras8-m3iooe3fvzovb3.webp'
+                            ],
+                            'https://shopee.co.id/Assojar-Dasira-Kebaya-Kebaya-Janggan-Atasan-Kebaya-Batik-klasik-i.268063807.28267838781'
+                        )">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7ra0h-mcmcv2nn2rlj77.webp" class="card-img-top" alt="Kebaya">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Kebaya Janggan</h5>
+                            <p class="price-tag">Rp 209.000</p>
+                            <small class="text-muted">Klik kagem Slide & Pesan</small>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4 mb-4">
-                    <div class="card portfolio-card">
-                        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//108/MTA-66888243/no_brand_baju_couple_kebaya_batik_modern_-_baju_kebaya_batik_-_baju_batik_wanita_-_baju_batik_pria_-_baju_sarimbit_batik_full01_94b23857.jpg" class="card-img-top" alt="Batik">
-                        <div class="card-body">
-                            <h5 class="card-title">Batik</h5>
-                            <p class="card-text">Batik mawi corak ingkang padhang kagem ageman padintenan.</p>
+                    <div class="card portfolio-card h-100" 
+                        onclick="openModal(
+                            'Batik Mega Mendung', 
+                            'Rp 419.000', 
+                            'Batik Mega Mendung corak ingkang padhang kagem ageman padintenan.', 
+                            [
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4io8cfy94142.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0t-mc4j6wnnskl5c7.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc4io8cfznoh21.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4j6wnntz5l1d.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7ra0p-mc4j6wnnvdq187.webp'
+                            ],
+                            'https://shopee.co.id/BATIK-TRUSMI-Kemeja-Pria-Lengan-Panjang-Batik-Pria-Jumbo-Motif-Mega-Mendung-Birawa-Premium-i.47406445.18570062804'
+                        )">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4io8cfy94142.webp" class="card-img-top" alt="Batik">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Batik Mega Mendung</h5>
+                            <p class="price-tag">Rp 419.000</p>
+                            <small class="text-muted">Klik kagem Slide & Pesan</small>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4 mb-4">
-                    <div class="card portfolio-card">
-                        <img src="https://i.pinimg.com/736x/29/d9/98/29d998ab15698f9298ab32010793506f.jpg" class="card-img-top" alt="Beskap">
-                        <div class="card-body">
-                            <h5 class="card-title">Beskap</h5>
-                            <p class="card-text">Beskap kanthi aksen werni ingkang ndadosaken Panjenengan tampil mirunggan.</p>
+                    <div class="card portfolio-card h-100" 
+                        onclick="openModal(
+                            'Beskap Solo', 
+                            'Rp 344.900', 
+                            'Beskap kanthi aksen werni ingkang ndadosaken Panjenengan tampil mirunggan.', 
+                            [
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rasi-m5whxy4ja1s211.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rask-m5whxy4jbgcibd@resize_w450_nl.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rash-m5whxy4jcuwya7@resize_w450_nl.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rasb-m5whxy4jjvpc1b@resize_w450_nl.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7rasd-m5whxy4je9he10@resize_w450_nl.webp'
+                            ],
+                            'https://shopee.co.id/(1set-Cowok)-Pakaian-Adat-Jawa-Beskap-Solo-Semen-Romo-i.213443707.26625252825'
+                        )">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7rasf-m5whxy4ja1q8a7.webp" class="card-img-top" alt="Beskap">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Beskap Solo</h5>
+                            <p class="price-tag">Rp 344.900</p>
+                            <small class="text-muted">Klik kagem Slide & Pesan</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card portfolio-card h-100" 
+                        onclick="openModal(
+                            'Surjan', 
+                            'Rp 515.959', 
+                            'Surjan yaiku rasukan tradhisional kakung Jawi awujud klambi lengen dawa sing dadi pralambang sandhangan takwa.', 
+                            [
+                                'https://down-id.img.susercontent.com/file/id-11134207-822wh-mm9vhz7oz4zzb3.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-822wr-mm9vhz7oxqfj62.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-822wo-mm9vhz7zxukhf5.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-822wh-mm9vhz800npd9a.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-822wo-mm9vhz7p0jkf5b.webp'
+                            ],
+                            'https://shopee.co.id/-Set-Premium-LAC-Surjan-dan-Kebaya-Lurik-Sepasang-Jarik-Wiru-Instan-Blangkon-Solo-Lurik-A-Coklat-i.226274652.52257730832'
+                        )">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-822wr-mm9vhz80229tb5.webp" class="card-img-top" alt="Surjan">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Surjan</h5>
+                            <p class="price-tag">Rp 515.959</p>
+                            <small class="text-muted">Klik kagem Slide & Pesan</small>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4 mb-4">
+                    <div class="card portfolio-card h-100" 
+                        onclick="openModal(
+                            'Basahan', 
+                            'Rp 297.297', 
+                            'Basahan yaiku busana penganten tradisional Jawi (mumpuni saking Solo) ingkang mboten ngangge klambi, nanging namung ngginakaken kain jarit kanthi motif kromo utawi cindhe ingkang katutupaken ing jaja (dhadha).', 
+                            [
+                                'https://down-id.img.susercontent.com/file/id-11134207-7r991-lsognjhbo8jt31.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7qul9-lh8o889l4yu739.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lh8o88876zsj93.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7qul9-lh8o888r66ov70.webp',
+                                'https://down-id.img.susercontent.com/file/id-11134207-7qul3-lh8o887n7t80b2.webp'
+                            ],
+                            'https://shopee.co.id/-1-Set-Kamisol-Selendang-Jarik-Instan-Model-Basahan-Semenromo-i.226274652.23143608697'
+                        )">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134207-7r991-lsognjhbo8jt31.webp" class="card-img-top" alt="Basahan">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Basahan</h5>
+                            <p class="price-tag">Rp 297.297</p>
+                            <small class="text-muted">Klik kagem Slide & Pesan</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Nama Produk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner" id="carouselItems"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex flex-column justify-content-center">
+                            <h3 id="modalPrice" class="text-danger fw-bold mb-2">Harga</h3>
+                            <p id="modalDesc" class="text-muted mb-4">Deskripsi produk...</p>
+                            <div class="d-grid gap-2">
+                                <a href="#" id="waButton" target="_blank" class="btn btn-whatsapp btn-lg">Tanya via WhatsApp</a>
+                                <a href="#" id="shopeeButton" target="_blank" class="btn btn-shopee btn-lg">Tumbas ing Shopee</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-gradient-tertiary text-white">
+    <section id="contact" class="py-5 text-white text-center">
         <div class="container">
-            <h3 class="text-center mb-4">Narahubung</h3>
-            <form>
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Asma" required>
-                </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Email" required>
-                </div>
-                <div class="mb-3">
-                    <textarea class="form-control" rows="3" placeholder="Pesen"></textarea>
-                </div>
-                <button type="submit" class="btn btn-light">Ngirim</button>
-            </form>
-            <p class="mt-3 text-center">Email: dimas.kurniawan3889@smp.belajar.id | Narahubung: +62 895 3203 08855</p>
+            <h3>Narahubung</h3>
+            <p class="mb-0 small">Email: dimas.kurniawan3889@smp.belajar.id</p>
+            <p class="small">WA: +62 895 3203 08855</p>
+            <hr class="bg-warning mx-auto w-25">
+            <p class="m-0 small opacity-75">&copy; 2026 VidiKatalog</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 VidiKatalog
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        function openModal(title, price, desc, imgArray, shopeeUrl) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('shopeeButton').href = shopeeUrl;
+
+            const carouselInner = document.getElementById('carouselItems');
+            carouselInner.innerHTML = ''; 
+
+            imgArray.forEach((url, index) => {
+                const activeClass = index === 0 ? 'active' : '';
+                carouselInner.innerHTML += `
+                    <div class="carousel-item ${activeClass}" data-bs-interval="3000">
+                        <img src="${url}" alt="Foto ${index + 1}">
+                    </div>
+                `;
+            });
+
+            const phoneNumber = "62895320308855";
+            const message = `Halo Vidi Katalog, saya tertarik dengan produk *${title}* (${price}). Apakah masih tersedia?`;
+            const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            document.getElementById('waButton').href = waUrl;
+
+            const myModal = new bootstrap.Modal(document.getElementById('productModal'));
+            myModal.show();
+        }
+    </script>
 </body>
 </html>
