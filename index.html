@@ -1,106 +1,422 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidi Katalog - Busana Jawi Modern</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
-            --jawa-gold: #d4af37;
-            --jawa-brown: #5d4037;
-            --jawa-dark: #2c1e1a;
+            /* Tema 3D Mewah dengan Warna Gold Kalem (Sesuai Tombol) */
+            --luxury-gold: #d4af37;       /* Gold klasik (Agak gelap) */
+            --soft-gold: #e6c27a;         /* PENGGANTI KUNING MENCOLOK: Gold lembut/Champagne */
+            --gold-light: #fceea7;        /* Gold sangat terang/Creamy untuk tombol */
+            
+            --charcoal-bg: #3a3d45;       /* Latar belakang semi abu-abu terang */
+            --charcoal-card: #1c1e22;     /* Kartu lebih gelap agar menonjol */
+            --charcoal-darker: #121316;   
             --shopee-orange: #ee4d2d;
             --wa-green: #25d366;
+            --text-light: #ffffff;      
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #fcfaf5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 50% 0%, #585d6b 0%, var(--charcoal-bg) 80%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .modal-title { font-family: 'Playfair Display', serif; }
 
+        /* =========================================
+           GARIS BATAS ELEGAN (DIVIDER)
+           ========================================= */
+        .elegant-divider {
+            height: 3px;
+            /* Menggunakan soft gold agar lebih kalem */
+            background: linear-gradient(to right, transparent 0%, var(--soft-gold) 50%, transparent 100%);
+            opacity: 0.9;
+            margin: 0 auto;
+            width: 85%;
+            box-shadow: 0 0 15px rgba(230, 194, 122, 0.4);
+            position: relative;
+        }
+        
+        .elegant-divider::after {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 1.5rem;
+            text-shadow: 0 0 15px var(--soft-gold);
+            background-color: var(--charcoal-bg); 
+            padding: 0 15px;
+            border-radius: 50%;
+        }
+
+        /* =========================================
+           HEADER & NAVIGASI
+           ========================================= */
         header {
-            background: linear-gradient(45deg, var(--jawa-brown), var(--jawa-dark));
-            z-index: 1030;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://www.toptal.com/designers/subtlepatterns/uploads/batik-pattern.png');
-            padding: 100px 0;
-            border-bottom: 5px solid var(--jawa-gold);
-        }
-
-        .portfolio-card {
+            background: rgba(28, 30, 34, 0.9) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
             transition: all 0.3s ease;
-            border: none;
-            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* TULISAN VIDI KATALOG LEBIH KALEM */
+        .header-title {
+            letter-spacing: 3px; 
+            font-size: 2.2rem; 
+            font-weight: 800;
+            color: var(--soft-gold);
+            text-shadow: 0 2px 15px rgba(230, 194, 122, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .header-title:hover {
+            text-shadow: 0 0 20px rgba(230, 194, 122, 0.8), 0 0 8px #fff;
+            transform: scale(1.03);
+            color: #fff;
+        }
+
+        .nav-link { 
+            position: relative;
+            transition: color 0.3s ease;
+            color: var(--text-light) !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -5px; left: 0;
+            background: var(--soft-gold);
+            transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 0 8px var(--soft-gold);
+        }
+
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--soft-gold) !important; text-shadow: 0 0 10px rgba(230, 194, 122, 0.4); }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/batik-pattern.png');
+            background-blend-mode: overlay;
+            background-color: rgba(58, 61, 69, 0.6);
+            padding: 160px 0 140px;
+            clip-path: ellipse(150% 100% at 50% 0%);
+            position: relative;
+            box-shadow: inset 0 -30px 50px rgba(0,0,0,0.4);
+        }
+
+        /* TULISAN KOLEKSI BUSANA ENGGAL LEBIH KALEM */
+        .hero h2 {
+            font-size: 4.5rem;
+            letter-spacing: 1px;
+            color: var(--soft-gold);
+            font-weight: 800;
+            animation: textGlowPulse 3.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes textGlowPulse {
+            0% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.3); color: var(--luxury-gold); }
+            100% { text-shadow: 0 0 25px rgba(230, 194, 122, 0.6), 0 0 40px rgba(252, 238, 167, 0.4); color: var(--soft-gold); }
+        }
+
+        .btn-floating {
+            animation: floating 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--luxury-gold));
+            color: var(--charcoal-darker);
+            border: 2px solid #fff;
+            letter-spacing: 1.5px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #fff, var(--soft-gold));
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(230, 194, 122, 0.6);
+            color: #000;
+            border-color: var(--luxury-gold);
+        }
+
+        /* =========================================
+           KARTU PRODUK (3D Mengambang, Border Tebal, Shine Putih)
+           ========================================= */
+        .portfolio-card {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 3px solid var(--luxury-gold); 
+            border-radius: 20px; 
             overflow: hidden;
             cursor: pointer;
-            background: white;
+            background: var(--charcoal-card);
+            box-shadow: 
+                0 15px 25px rgba(0,0,0,0.6), 
+                inset 0 3px 6px rgba(255,255,255,0.15),
+                inset 0 -3px 6px rgba(0,0,0,0.5);
+            position: relative; 
+            transform: perspective(1000px) translateZ(0);
+        }
+
+        .portfolio-card .card-title {
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+            color: var(--soft-gold);
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            font-size: 1.3rem;
+            font-weight: 800;
+            transition: color 0.3s;
+        }
+        
+        .portfolio-card .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 50px; height: 3px; 
+            background-color: var(--soft-gold);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 8px var(--soft-gold);
+        }
+
+        .portfolio-card:hover .card-title::after { width: 120px; height: 4px; }
+        .portfolio-card:hover .card-title { color: #fff; text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+
+        /* Efek Kilap Kaca Putih */
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 80%; 
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 2;
+            pointer-events: none; 
         }
 
         .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: perspective(1000px) translateY(-18px) scale(1.02); 
+            border-color: var(--soft-gold); 
+            box-shadow: 
+                0 35px 60px rgba(0,0,0,0.8), 
+                0 10px 25px rgba(230, 194, 122, 0.3), /* Cahaya bawah lebih kalem */
+                inset 0 3px 8px rgba(255,255,255,0.3),
+                inset 0 -3px 8px rgba(0,0,0,0.8); 
         }
 
+        .portfolio-card:hover::before { left: 150%; }
+
         .portfolio-card img {
-            height: 350px;
+            height: 380px;
             object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 3px solid var(--luxury-gold);
+            opacity: 0.9;
+        }
+
+        .portfolio-card:hover img { 
+            transform: scale(1.1); 
+            opacity: 1; 
+            border-bottom-color: var(--soft-gold);
         }
 
         .price-tag {
             font-size: 1.25rem;
-            color: var(--jawa-brown);
-            font-weight: 700;
+            color: #000;
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--gold-light), var(--luxury-gold)); /* Menyesuaikan tombol */
+            padding: 10px 28px;
+            border-radius: 30px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            border: 2px solid #fff;
         }
 
-        .btn-shopee { background-color: var(--shopee-orange); color: white; font-weight: 600; border: none; }
-        .btn-shopee:hover { background-color: #d73211; color: white; }
+        .portfolio-card small {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.05); 
+            color: #ddd !important;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-transform: uppercase;
+        }
+
+        .portfolio-card:hover small {
+            background-color: rgba(230, 194, 122, 0.15);
+            color: #fff !important;
+            border: 1px solid var(--soft-gold);
+            box-shadow: 0 0 15px rgba(230, 194, 122, 0.4);
+        }
+
+        /* =========================================
+           MODAL / POP-UP 
+           ========================================= */
+        .modal {
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            background-color: rgba(10, 12, 16, 0.9) !important; 
+        }
+
+        .modal-content { 
+            border: 3px solid var(--soft-gold); 
+            border-radius: 24px; 
+            overflow: hidden; 
+            background: var(--charcoal-card);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.9), inset 0 0 30px rgba(230,194,122,0.15);
+            color: var(--text-light);
+        }
         
-        .btn-whatsapp { background-color: var(--wa-green); color: white; font-weight: 600; border: none; }
-        .btn-whatsapp:hover { background-color: #1eb954; color: white; }
+        .modal-header { 
+            border-bottom: 2px solid rgba(230, 194, 122, 0.3); 
+            padding: 20px 24px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        }
+
+        .modal-title {
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 800;
+            color: var(--soft-gold);
+            font-size: 1.6rem;
+            text-shadow: 0 0 12px rgba(230,194,122,0.4);
+        }
         
-        .modal-content { border-radius: 20px; border: none; }
-        .modal-header { border-bottom: 2px solid var(--jawa-gold); background-color: #fcfaf5; }
-        
+        .btn-close {
+            background-color: transparent;
+            border: 2px solid var(--luxury-gold);
+            border-radius: 50%;
+            opacity: 1;
+            padding: 12px;
+            transition: all 0.4s ease;
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        .btn-close:hover {
+            transform: rotate(180deg) scale(1.1);
+            background-color: var(--soft-gold);
+            border-color: #fff;
+            filter: invert(0);
+            box-shadow: 0 0 20px rgba(230, 194, 122, 0.6);
+        }
+
         .carousel-item img {
-            border-radius: 15px;
+            border-radius: 16px;
             width: 100%;
-            height: 450px;
+            height: 420px;
             object-fit: contain;
-            background-color: #f8f9fa;
-        }
-        
-        .carousel-control-prev-icon, .carousel-control-next-icon {
-            filter: invert(1);
+            background-color: rgba(0,0,0,0.6);
+            border: 2px solid rgba(230, 194, 122, 0.2); 
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
         }
 
-        #contact { background: linear-gradient(135deg, #3e2723 0%, #1b110f 100%); }
+        .btn-shopee, .btn-whatsapp {
+            font-weight: 800;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .btn-shopee { background-color: var(--shopee-orange); color: white; box-shadow: 0 5px 15px rgba(238, 77, 45, 0.4); }
+        .btn-shopee:hover { background-color: #ff5e3e; transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(238, 77, 45, 0.6); color: white;}
+        
+        .btn-whatsapp { background-color: var(--wa-green); color: white; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+        .btn-whatsapp:hover { background-color: #2be872; transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6); color: white;}
+
+        /* =========================================
+           FOOTER / NARAHUBUNG
+           ========================================= */
+        #contact { 
+            background: linear-gradient(to bottom, rgba(58, 61, 69, 0.3) 0%, #0d0e11 100%);
+            position: relative;
+        }
+        
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 40px 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            height: 100%;
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.4),
+                inset 0 2px 5px rgba(255,255,255,0.1);
+        }
+        
+        .contact-box:hover {
+            border-color: var(--soft-gold);
+            background: rgba(255, 255, 255, 0.08);
+            transform: perspective(1000px) translateY(-12px) translateZ(10px);
+            box-shadow: 
+                0 25px 45px rgba(0,0,0,0.6), 
+                0 0 25px rgba(230, 194, 122, 0.25),
+                inset 0 2px 5px rgba(255,255,255,0.2);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(230, 194, 122, 0.4));
+        }
     </style>
 </head>
 <body>
 
-    <header class="text-white py-3 sticky-top">
+    <header class="py-3 sticky-top">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="m-0" style="letter-spacing: 2px; font-size: 1.5rem;">VIDI KATALOG</h1>
-            <nav class="d-flex align-items-center gap-3">
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-white small" href="#portfolio" data-i18n="nav_portfolio">Pratelan</a></li>
-                    <li class="nav-item"><a class="nav-link text-white small" href="#contact" data-i18n="nav_contact">Narahubung</a></li>
+            <h1 class="m-0 header-title" data-aos="fade-right">VIDI KATALOG</h1>
+            <nav class="d-flex align-items-center gap-4" data-aos="fade-left">
+                <ul class="nav d-none d-md-flex gap-2"> 
+                    <li class="nav-item"><a class="nav-link" href="#portfolio" data-i18n="nav_portfolio">Pratelan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">Narahubung</a></li>
                 </ul>
                 <div class="dropdown">
-                    <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-secondary dropdown-toggle" style="border: 2px solid var(--soft-gold); color: var(--soft-gold); font-weight: 700; background: rgba(0,0,0,0.3);" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         🌐 <span id="currentLangLabel">Jawa</span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg dropdown-menu-dark" style="background-color: var(--charcoal-card); border: 2px solid var(--luxury-gold);">
                         <li><a class="dropdown-item" href="#" onclick="changeLang('jv', 'Jawa')">Basa Jawa</a></li>
                         <li><a class="dropdown-item" href="#" onclick="changeLang('id', 'Indonesia')">Bahasa Indonesia</a></li>
                         <li><a class="dropdown-item" href="#" onclick="changeLang('en', 'English')">English</a></li>
@@ -110,50 +426,68 @@
         </div>
     </header>
 
-    <section class="hero text-white text-center">
+    <section class="hero text-center">
         <div class="container">
-            <h2 class="display-4 mb-3" data-i18n="hero_title">Koleksi Busana Enggal</h2>
-            <p class="lead mb-4" data-i18n="hero_desc">Panggihaken rancangan ingkang tegas saha manéka warni.</p>
-            <a href="#portfolio" class="btn btn-warning btn-lg px-5 shadow fw-bold" data-i18n="hero_btn">Tingali Koleksi</a>
+            <h2 class="mb-4" data-i18n="hero_title" data-aos="zoom-in" data-aos-duration="1200">Koleksi Busana Enggal</h2>
+            <p class="lead mb-5 text-light" data-i18n="hero_desc" data-aos="fade-up" data-aos-delay="200" style="font-weight: 400; font-size: 1.4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">Panggihaken rancangan ingkang tegas saha manéka warni.</p>
+            <a href="#portfolio" class="btn btn-gold btn-lg px-5 fw-bold btn-floating rounded-pill" data-i18n="hero_btn" data-aos="fade-up" data-aos-delay="400">Tingali Koleksi</a>
         </div>
     </section>
 
+    <div class="elegant-divider mt-5" data-aos="fade-in"></div>
+
     <section id="portfolio" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5" data-i18n="portfolio_title">Pratelan Produk</h2>
+        <div class="container pt-4">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 data-i18n="portfolio_title" style="color: #fff; display: inline-block; position: relative; padding-bottom: 15px; font-size: 2.5rem; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255,255,255,0.2);">
+                    Pratelan Produk
+                    <div style="position: absolute; bottom: 0; left: 10%; width: 80%; height: 3px; background: var(--soft-gold); border-radius: 2px; box-shadow: 0 0 10px var(--soft-gold);"></div>
+                </h2>
+            </div>
             <div class="row justify-content-center" id="productContainer">
                 </div>
         </div>
     </section>
 
+    <div class="elegant-divider mb-4" data-aos="fade-in"></div>
+
     <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Nama Produk</h5>
+                <div class="modal-header align-items-center">
+                    <h5 class="modal-title m-0" id="modalTitle">Nama Produk</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4 p-md-5">
                     <div class="row">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <div id="productCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <div class="carousel-inner" id="carouselItems"></div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex flex-column justify-content-center">
-                            <h3 id="modalPrice" class="text-danger fw-bold mb-2">Harga</h3>
-                            <p id="modalDesc" class="text-muted mb-4">Deskripsi produk...</p>
-                            <div class="d-grid gap-2">
-                                <a href="#" id="waButton" target="_blank" class="btn btn-whatsapp btn-lg" data-i18n="btn_wa">Nyuwun pirsa via WhatsApp</a>
-                                <a href="#" id="shopeeButton" target="_blank" class="btn btn-shopee btn-lg" data-i18n="btn_shopee">Tumbas ing Shopee</a>
+                        <div class="col-md-6 d-flex flex-column">
+                            <div class="mb-4">
+                                <span id="modalPrice" class="price-tag">Harga</span>
+                            </div>
+                            <p id="modalDesc" class="mb-4" style="font-size: 1.15rem; line-height: 1.8; font-weight: 300; color: #ddd;">Deskripsi produk...</p>
+                            
+                            <div class="d-grid gap-3 mt-auto pt-4" style="border-top: 2px solid rgba(212,175,55,0.4);">
+                                <a href="#" id="waButton" target="_blank" class="btn btn-whatsapp btn-lg d-flex justify-content-center align-items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                                    Pesan via WhatsApp
+                                </a>
+                                <a href="#" id="shopeeButton" target="_blank" class="btn btn-shopee btn-lg d-flex justify-content-center align-items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/></svg>
+                                    Beli di Shopee
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -162,19 +496,42 @@
         </div>
     </div>
 
-    <section id="contact" class="py-5 text-white text-center">
-        <div class="container">
-            <h3 data-i18n="contact_title">Narahubung</h3>
-            <p class="mb-0 small">Email: dimas.kurniawan3889@smp.belajar.id</p>
-            <p class="small">WA: +62 895 3203 08855</p>
-            <hr class="bg-warning mx-auto w-25">
-            <p class="m-0 small opacity-75">&copy; 2026 VidiKatalog</p>
+    <section id="contact" class="py-5 text-center">
+        <div class="container pt-4" data-aos="fade-up">
+            <h2 data-i18n="contact_title" class="mb-5" style="color: #fff; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(230,194,122,0.4);">Narahubung</h2>
+            
+            <div class="row justify-content-center gap-4 mb-5 px-3">
+                <div class="col-md-5">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dimas.kurniawan3889@smp.belajar.id&su=Tanya%20Katalog%20Vidi&body=Halo%2C%20saya%20ingin%20bertanya%20seputar%20koleksi%20di%20Vidi%20Katalog." target="_blank" class="text-decoration-none text-light">
+                        <div class="contact-box">
+                            <div class="contact-icon">✉️</div>
+                            <h4 class="fw-bold mb-3" style="color: var(--soft-gold); letter-spacing: 1px;">Kirim Email</h4>
+                            <p class="m-0" style="word-break: break-all; font-size: 1.15rem; color: #ccc;">dimas.kurniawan3889@smp.belajar.id</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <a href="https://wa.me/62895320308855" target="_blank" class="text-decoration-none text-light">
+                        <div class="contact-box">
+                            <div class="contact-icon">📱</div>
+                            <h4 class="fw-bold mb-3" style="color: var(--wa-green); letter-spacing: 1px;">WhatsApp</h4>
+                            <p class="m-0" style="font-size: 1.15rem; color: #ccc;">+62 895 3203 08855</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="mx-auto w-50 mb-4" style="border-top: 2px solid var(--soft-gold); opacity: 0.5; box-shadow: 0 0 10px var(--soft-gold);">
+            <p class="m-0 fw-bold" style="color: #bbb; letter-spacing: 2px; text-transform: uppercase;">&copy; 2026 Vidi Katalog. All Rights Reserved.</p>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // --- DATA BAHASA (KAMUS) ---
+        AOS.init({ duration: 1000, once: true, offset: 50 });
+
         const translations = {
             'jv': {
                 'nav_portfolio': 'Pratelan',
@@ -183,11 +540,8 @@
                 'hero_desc': 'Panggihaken rancangan ingkang tegas saha manéka warni.',
                 'hero_btn': 'Tingali Koleksi',
                 'portfolio_title': 'Pratelan Produk',
-                'click_slide': 'Klik kagem Slide & Pesan',
-                'contact_title': 'Narahubung',
-                'btn_wa': 'Nyuwun pirsa via WhatsApp',
-                'btn_shopee': 'Tumbas ing Shopee',
-                'wa_greeting': 'Sugeng siang Vidi Katalog, kulo badhe nyuwun pirsa babagan produk *{title}* ({price}). Punapa taksih wonten?'
+                'click_slide': 'Klik kagem Detail',
+                'contact_title': 'Narahubung'
             },
             'id': {
                 'nav_portfolio': 'Katalog',
@@ -196,11 +550,8 @@
                 'hero_desc': 'Temukan desain yang tegas dan beraneka ragam.',
                 'hero_btn': 'Lihat Koleksi',
                 'portfolio_title': 'Daftar Produk',
-                'click_slide': 'Klik untuk Slide & Pesan',
-                'contact_title': 'Kontak Kami',
-                'btn_wa': 'Tanya via WhatsApp',
-                'btn_shopee': 'Beli di Shopee',
-                'wa_greeting': 'Halo Vidi Katalog, saya tertarik dengan produk *{title}* ({price}). Apakah masih tersedia?'
+                'click_slide': 'Klik untuk Detail',
+                'contact_title': 'Kontak Kami'
             },
             'en': {
                 'nav_portfolio': 'Catalog',
@@ -209,139 +560,107 @@
                 'hero_desc': 'Discover bold and diverse designs.',
                 'hero_btn': 'View Collection',
                 'portfolio_title': 'Product Catalog',
-                'click_slide': 'Click for Slide & Order',
-                'contact_title': 'Contact Us',
-                'btn_wa': 'Ask via WhatsApp',
-                'btn_shopee': 'Buy on Shopee',
-                'wa_greeting': 'Hello Vidi Katalog, I am interested in the product *{title}* ({price}). Is it still available?'
+                'click_slide': 'Click for Details',
+                'contact_title': 'Contact Us'
             }
         };
 
-        let currentLang = 'jv'; // Bahasa default
+        const waGreetings = {
+            'jv': 'Sugeng siang Vidi Katalog, kulo badhe nyuwun pirsa babagan produk *{title}* ({price}). Punapa taksih wonten?',
+            'id': 'Halo Vidi Katalog, saya tertarik dengan produk *{title}* ({price}). Apakah masih tersedia?',
+            'en': 'Hello Vidi Katalog, I am interested in the product *{title}* ({price}). Is it still available?'
+        };
+
+        let currentLang = 'jv'; 
         let currentOpenProduct = null;
 
-        // --- DATA PRODUK ---
         const productsData = {
             'kebaya': {
-                title: 'Kebaya Janggan',
-                price: 'Rp 209.000',
-                desc: {
-                    jv: 'Kebaya mawi corak mawarni-warni kangge adicara istimewa.',
-                    id: 'Kebaya dengan corak warna-warni untuk acara istimewa.',
-                    en: 'Kebaya with colorful patterns for special events.'
-                },
+                title: 'Kebaya Janggan', price: 'Rp 209.000',
+                desc: { jv: 'Kebaya mawi corak mawarni-warni kangge adicara istimewa.', id: 'Kebaya dengan corak warna-warni untuk acara istimewa.', en: 'Kebaya with colorful patterns for special events.' },
                 images: [
                     'https://down-id.img.susercontent.com/file/id-11134207-7ra0i-mcmb671i8mjcc4.webp',
                     'https://down-id.img.susercontent.com/file/id-11134207-7ra0t-mcmb671s885304.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7rasm-m2tlt87fvf3v28.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7rasg-m2ory6fkutq7ff.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7ras8-m3iooe3fvzovb3.webp'
+                    'https://down-id.img.susercontent.com/file/id-11134207-7rasm-m2tlt87fvf3v28.webp'
                 ],
                 cover: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0h-mcmcv2nn2rlj77.webp',
                 link: 'https://shopee.co.id/Assojar-Dasira-Kebaya-Kebaya-Janggan-Atasan-Kebaya-Batik-klasik-i.268063807.28267838781'
             },
             'batik': {
-                title: 'Batik Mega Mendung',
-                price: 'Rp 419.000',
-                desc: {
-                    jv: 'Batik Mega Mendung corak ingkang padhang kagem ageman padintenan.',
-                    id: 'Batik Mega Mendung corak terang untuk pakaian sehari-hari.',
-                    en: 'Brightly patterned Mega Mendung Batik for everyday wear.'
-                },
+                title: 'Batik Mega Mendung', price: 'Rp 419.000',
+                desc: { jv: 'Batik Mega Mendung corak ingkang padhang kagem ageman padintenan.', id: 'Batik Mega Mendung corak terang untuk pakaian sehari-hari.', en: 'Brightly patterned Mega Mendung Batik for everyday wear.' },
                 images: [
                     'https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4io8cfy94142.webp',
                     'https://down-id.img.susercontent.com/file/id-11134207-7ra0t-mc4j6wnnskl5c7.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc4io8cfznoh21.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4j6wnntz5l1d.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7ra0p-mc4j6wnnvdq187.webp'
+                    'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc4io8cfznoh21.webp'
                 ],
                 cover: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0u-mc4io8cfy94142.webp',
                 link: 'https://shopee.co.id/BATIK-TRUSMI-Kemeja-Pria-Lengan-Panjang-Batik-Pria-Jumbo-Motif-Mega-Mendung-Birawa-Premium-i.47406445.18570062804'
             },
             'beskap': {
-                title: 'Beskap Solo',
-                price: 'Rp 344.900',
-                desc: {
-                    jv: 'Beskap kanthi aksen werni ingkang ndadosaken Panjenengan tampil mirunggan.',
-                    id: 'Beskap dengan aksen warna yang membuat Anda tampil istimewa.',
-                    en: 'Beskap with color accents that make you look extraordinary.'
-                },
+                title: 'Beskap Solo', price: 'Rp 344.900',
+                desc: { jv: 'Beskap kanthi aksen werni ingkang ndadosaken Panjenengan tampil mirunggan.', id: 'Beskap dengan aksen warna yang membuat Anda tampil istimewa.', en: 'Beskap with color accents that make you look extraordinary.' },
                 images: [
                     'https://down-id.img.susercontent.com/file/id-11134207-7rasi-m5whxy4ja1s211.webp',
                     'https://down-id.img.susercontent.com/file/id-11134207-7rask-m5whxy4jbgcibd@resize_w450_nl.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7rash-m5whxy4jcuwya7@resize_w450_nl.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7rasb-m5whxy4jjvpc1b@resize_w450_nl.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7rasd-m5whxy4je9he10@resize_w450_nl.webp'
+                    'https://down-id.img.susercontent.com/file/id-11134207-7rash-m5whxy4jcuwya7@resize_w450_nl.webp'
                 ],
                 cover: 'https://down-id.img.susercontent.com/file/id-11134207-7rasf-m5whxy4ja1q8a7.webp',
                 link: 'https://shopee.co.id/(1set-Cowok)-Pakaian-Adat-Jawa-Beskap-Solo-Semen-Romo-i.213443707.26625252825'
             },
             'surjan': {
-                title: 'Surjan',
-                price: 'Rp 515.959',
-                desc: {
-                    jv: 'Surjan yaiku rasukan tradhisional kakung Jawi awujud klambi lengen dawa sing dadi pralambang sandhangan takwa.',
-                    id: 'Surjan adalah pakaian tradisional pria Jawa berupa kemeja lengan panjang yang melambangkan pakaian takwa.',
-                    en: 'Surjan is a traditional Javanese men\'s long-sleeved shirt that symbolizes garments of piety.'
-                },
+                title: 'Surjan', price: 'Rp 515.959',
+                desc: { jv: 'Surjan yaiku rasukan tradhisional kakung Jawi awujud klambi lengen dawa sing dadi pralambang sandhangan takwa.', id: 'Surjan adalah pakaian tradisional pria Jawa berupa kemeja lengan panjang yang melambangkan pakaian takwa.', en: 'Surjan is a traditional Javanese men\'s long-sleeved shirt that symbolizes garments of piety.' },
                 images: [
                     'https://down-id.img.susercontent.com/file/id-11134207-822wh-mm9vhz7oz4zzb3.webp',
                     'https://down-id.img.susercontent.com/file/id-11134207-822wr-mm9vhz7oxqfj62.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-822wo-mm9vhz7zxukhf5.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-822wh-mm9vhz800npd9a.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-822wo-mm9vhz7p0jkf5b.webp'
+                    'https://down-id.img.susercontent.com/file/id-11134207-822wo-mm9vhz7zxukhf5.webp'
                 ],
                 cover: 'https://down-id.img.susercontent.com/file/id-11134207-822wr-mm9vhz80229tb5.webp',
                 link: 'https://shopee.co.id/-Set-Premium-LAC-Surjan-dan-Kebaya-Lurik-Sepasang-Jarik-Wiru-Instan-Blangkon-Solo-Lurik-A-Coklat-i.226274652.52257730832'
             },
             'basahan': {
-                title: 'Basahan',
-                price: 'Rp 297.297',
-                desc: {
-                    jv: 'Basahan yaiku busana penganten tradisional Jawi ingkang namung ngginakaken kain jarit kanthi motif kromo utawi cindhe.',
-                    id: 'Basahan adalah busana pengantin tradisional Jawa yang hanya menggunakan kain jarik bermotif kromo atau cindhe.',
-                    en: 'Basahan is a traditional Javanese bridal attire using only a jarik cloth with kromo or cindhe motifs.'
-                },
+                title: 'Basahan', price: 'Rp 297.297',
+                desc: { jv: 'Basahan yaiku busana penganten tradisional Jawi ingkang namung ngginakaken kain jarit kanthi motif kromo utawi cindhe.', id: 'Basahan adalah busana pengantin tradisional Jawa yang hanya menggunakan kain jarik bermotif kromo atau cindhe.', en: 'Basahan is a traditional Javanese bridal attire using only a jarik cloth with kromo or cindhe motifs.' },
                 images: [
                     'https://down-id.img.susercontent.com/file/id-11134207-7r991-lsognjhbo8jt31.webp',
                     'https://down-id.img.susercontent.com/file/id-11134207-7qul9-lh8o889l4yu739.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lh8o88876zsj93.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7qul9-lh8o888r66ov70.webp',
-                    'https://down-id.img.susercontent.com/file/id-11134207-7qul3-lh8o887n7t80b2.webp'
+                    'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lh8o88876zsj93.webp'
                 ],
                 cover: 'https://down-id.img.susercontent.com/file/id-11134207-7r991-lsognjhbo8jt31.webp',
                 link: 'https://shopee.co.id/-1-Set-Kamisol-Selendang-Jarik-Instan-Model-Basahan-Semenromo-i.226274652.23143608697'
             }
         };
 
-        // Render Katalog Produk
         function renderProducts() {
             const container = document.getElementById('productContainer');
             container.innerHTML = '';
             
+            let delayIndex = 0;
             for (const [key, product] of Object.entries(productsData)) {
                 const cardHtml = `
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="${delayIndex * 150}">
                         <div class="card portfolio-card h-100" onclick="openModal('${key}')">
-                            <img src="${product.cover}" class="card-img-top" alt="${product.title}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">${product.title}</h5>
-                                <p class="price-tag">${product.price}</p>
-                                <small class="text-muted" data-i18n="click_slide">${translations[currentLang]['click_slide']}</small>
+                            <div class="overflow-hidden">
+                                <img src="${product.cover}" class="card-img-top" alt="${product.title}" loading="lazy">
+                            </div>
+                            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                                <h5 class="card-title w-100">${product.title}</h5>
+                                <div class="price-tag">${product.price}</div>
+                                <small class="mt-auto" data-i18n="click_slide">${translations[currentLang]['click_slide']}</small>
                             </div>
                         </div>
                     </div>
                 `;
                 container.innerHTML += cardHtml;
+                delayIndex++;
             }
         }
 
-        // Fungsi Ganti Bahasa
         function changeLang(lang, labelName) {
             currentLang = lang;
             document.getElementById('currentLangLabel').innerText = labelName;
 
-            // Ganti semua teks statis yang punya atribut data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
@@ -349,28 +668,21 @@
                 }
             });
 
-            // Jika modal sedang terbuka, perbarui deskripsi dan link WA
-            if (currentOpenProduct) {
-                updateModalContent(currentOpenProduct);
-            }
-            
-            // Re-render produk untuk memperbarui teks "Klik kagem Slide..."
+            if (currentOpenProduct) updateModalContent(currentOpenProduct);
             renderProducts();
         }
 
-        // Update isi Modal
         function updateModalContent(productKey) {
             const product = productsData[productKey];
             document.getElementById('modalDesc').innerText = product.desc[currentLang];
 
             const phoneNumber = "62895320308855";
-            let rawMsg = translations[currentLang]['wa_greeting'];
+            let rawMsg = waGreetings[currentLang];
             let message = rawMsg.replace('{title}', product.title).replace('{price}', product.price);
             
             document.getElementById('waButton').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         }
 
-        // Buka Modal
         function openModal(productKey) {
             currentOpenProduct = productKey;
             const product = productsData[productKey];
@@ -385,7 +697,7 @@
             product.images.forEach((url, index) => {
                 const activeClass = index === 0 ? 'active' : '';
                 carouselInner.innerHTML += `
-                    <div class="carousel-item ${activeClass}" data-bs-interval="3000">
+                    <div class="carousel-item ${activeClass}" data-bs-interval="3500">
                         <img src="${url}" alt="Foto ${index + 1}">
                     </div>
                 `;
@@ -397,10 +709,7 @@
             myModal.show();
         }
 
-        // Inisialisasi awal
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-        });
+        document.addEventListener('DOMContentLoaded', () => { renderProducts(); });
     </script>
 </body>
 </html>
